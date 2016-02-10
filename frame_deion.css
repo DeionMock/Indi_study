@@ -1,0 +1,19 @@
+body{
+background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4j38tkFiEwX1mYNNEtSn8TtnvzeGroDpajHao7VGXqYdJN4uC");
+}
+.graph{
+	color:red;
+}
+.header{
+	text-align: center;
+	border: 20px 5px 20px 5px;
+	border-color: #6B6B6B;
+	color:red;
+	font-size: 40px;
+}
+
+table td{
+	color:red;
+	font-size: 20px;
+	font-style: italic;
+}
