@@ -1,34 +1,83 @@
 <!DOCTYPE html>
-	
+	<html lang="en">
 	<head>
+        <meta charset="utf-8" />
+        <title>Predator-Prey Simulator</title>
 		<link rel="stylesheet" type="text/css" href="frame_deion.css">
-		<title>
-		</title>
+        
+        <!-- Required to import Chart.js libraries -->
+         <script src='Chart.min.js'></script>
+
 	</head>
 
 	<body>
 		
 		<div class="header">
-			<h3>Predator Prey Model</h3>
+			<h3>Predator-Prey Model</h3>
 
 		</div>
 
 		<div class="graph">
 			<table border="1" width="100%">
 				<tr>
-					<td><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSiGvIkC-teOoXT6HU4n9y35T2FEogknspeARjAAwQ7WKOIGixWoA"/>
-						<!-- Trying to input js code into the webpage
-						<script src="C:\Users\De\git\Indi_study\Indi_study"></script>-->
-
-						<!-- Trial 2 for backend -->
-						<script>
-						var f = confirm("Is this working?");
-						</script>
-
-
+					<td>
+     <!-- Insert Practice Graph -->
+                    <canvas id="linear" width="300" height="250">   <script>
+    var linearData = {
+	labels : ["Linear1","Linear2","Linear3","Linear4","Linear5","Linear6"],
+	datasets : [
+		{
+			fillColor : "rgb(43,182,233)",
+			strokeColor : "#000000",
+			pointColor : "#fff",
+			pointStrokeColor : "#000000",
+			data : [100,200,300,400,500,600]
+		}
+	]
+}
+    var linear = document.getElementById('linear').getContext('2d');
+    new Chart(linear).Line(linearData);
+</script></canvas>
 					</td>
-					<td><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSiGvIkC-teOoXT6HU4n9y35T2FEogknspeARjAAwQ7WKOIGixWoA"/></td>
-					<td><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSiGvIkC-teOoXT6HU4n9y35T2FEogknspeARjAAwQ7WKOIGixWoA"/></td>
+					<td>
+                        <!-- Insert Practice Graph -->
+                      <canvas id="quad" width="300" height="250"><script>
+    var quadData = {
+	labels : ["Quadratic1","Quadratic2","Quadratic3","Quadratic4"],
+	datasets : [
+		{
+			fillColor : "rgb(43,182,233)",
+			strokeColor : "#000000",
+			pointColor : "#fff",
+			pointStrokeColor : "#000000",
+			data : [100,400,900,1600]
+		}
+	]
+}
+    var buyers = document.getElementById('quad').getContext('2d');
+    new Chart(buyers).Line(quadData);
+</script></canvas>
+                    </td>
+					<td>
+                      <canvas id="sin" width="300" height="250"><script>
+    var sinData = {
+	labels : ["Sin1","Sin2","Sin3","Sin4","Sin5","Sin6","Sin7", "Sin8","Sin9"],
+	datasets : [
+		{
+			fillColor : "rgb(43,182,233)",
+			strokeColor : "#000000",
+			pointColor : "#fff",
+			pointStrokeColor : "#000000",
+			data : [100,0,-100,0,100,0,-100,0,100]
+		}
+	]
+}
+    var buyers = document.getElementById('sin').getContext('2d');
+    new Chart(buyers).Line(sinData);
+</script></canvas>
+                    
+                    
+                    </td>
 				</tr>
 				<tr>
 					<td>Predator-Prey</td>
@@ -80,7 +129,7 @@
 				<button>
 			<script>
 			document.getElementById("myBtn").addEventListener("click", function(){
-				var btn = prompt("Holy Shit you hit a button!");
+				var btn = prompt("This is one functional button, if I do say so myself!");
 			});
 			</script>
 			</div>
