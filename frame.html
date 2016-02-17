@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 	
 	<head>
+        <meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="frame.css">
-		<title>
-		</title>
+		<title></title>
+        <script src='Chart.min.js'></script>
 	</head>
 
 	<body style="background-color: white;">
@@ -13,12 +14,71 @@
 
 		</div>
 
-		<div class="graph">
+		<div class="graphs">
 			<table border="1" width="100%">
 				<tr>
-					<td><img src="http://getwordwall.com/Attachments/Screenshots/Play/bar-graph.png"/></td>
-					<td><img src="http://getwordwall.com/Attachments/Screenshots/Play/bar-graph.png"/></td>
-					<td><img src="http://getwordwall.com/Attachments/Screenshots/Play/bar-graph.png"/></td>
+					<td>
+                    <canvas id="buyers" width="300" height="250">
+                        <script>
+                            var buyerData = {
+                            labels : ["Alicia","Harrison","Deion","John"],
+                            datasets : [
+                                {
+                                    fillColor : "rgba(172,194,132,0.4)",
+                                    strokeColor : "#ACC26D",
+                                    pointColor : "#fff",
+                                    pointStrokeColor : "#9DB86D",
+                                    data : [67, 95,68,48]
+                                }
+                                        ]  
+                            }   
+                            
+                            var buyers = document.getElementById('buyers').getContext('2d');
+                            new Chart(buyers).Line(buyerData);
+                        </script>
+                    </canvas>
+
+                    </td>
+					<td>
+                      <canvas id="sellers" width="300" height="250">
+                        <script>
+                            var buyerData = {
+                            labels : ["Alicia","Harrison","Deion","John"],
+                            datasets : [
+                                {
+                                    fillColor : "rgba(172,194,132,0.4)",
+                                    strokeColor : "#ACC26D",
+                                    pointColor : "#fff",
+                                    pointStrokeColor : "#9DB86D",
+                                    data : [67, 95,68,48]
+                                }
+                                        ]  
+                            }   
+                            
+                            var buyers = document.getElementById('sellers').getContext('2d');
+                            new Chart(buyers).Line(buyerData);
+                        </script>
+                    </canvas>
+                    </td>
+					<td><canvas id="others" width="300" height="250">
+                        <script>
+                            var buyerData = {
+                            labels : ["Alicia","Harrison","Deion","John"],
+                            datasets : [
+                                {
+                                    fillColor : "rgba(172,194,132,0.4)",
+                                    strokeColor : "#ACC26D",
+                                    pointColor : "#fff",
+                                    pointStrokeColor : "#9DB86D",
+                                    data : [67, 95,68,48]
+                                }
+                                        ]  
+                            }   
+                            
+                            var buyers = document.getElementById('others').getContext('2d');
+                            new Chart(buyers).Line(buyerData);
+                        </script>
+                    </canvas></td>
 				</tr>
 				<tr>
 					<td>Predator-Prey</td>
