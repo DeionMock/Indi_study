@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
+        <title>Basic Example</title>
+
+        <link href="home-alicia.css" rel="stylesheet" type="text/css">
+        
+        <script language="javascript" type="text/javascript" src="flot/jquery.js"></script>
+
+        <script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script>
+        
+       <script type="text/javascript">
+
+	$(function() {
+
+		$.plot($("#placeholder"), [ [[0, 0], [1, 1]] ], { yaxis: { max: 1 } });
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+
+    </head>
+    
+
+    <body>
+        <div id="placeholder" style="width:600px; height:300px"></div>
+    </body>
+
+</html>
