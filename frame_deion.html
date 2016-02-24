@@ -6,7 +6,51 @@
 		<link rel="stylesheet" type="text/css" href="frame_deion.css">
         
         <!-- Required to import Chart.js libraries -->
-         <script src='Chart.min.js'></script>
+          <script language="javascript" type="text/javascript" src="flot/jquery.js"></script>
+
+        <script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script>
+        
+        <!-- First graph information -->
+         <script type="text/javascript">
+
+	$(function() {
+
+		$.plot($("#placeholder"), [ [[0, 0], [1, 1], [2,2], [3,3], [4,4], [5,5]] ], { yaxis: { max: 5 }  });
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+        
+        <!-- Second Graph information | Attempt -->
+         <script type="text/javascript">
+
+	$(function() {
+
+		$.plot($("#middle"), [ [[0, 0],[1,1], [2, 4],[3,9],[4,16],[5,25]] ], { yaxis: { max: 25} });
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+        
+         <!-- Third Graph information | Attempt -->
+         <script type="text/javascript">
+
+	$(function() {
+
+		$.plot($("#end"), [ [[0, 0], [1, 1], [2,0],[3,-1],[4,0],[5,1],[6,0]] ], { yaxis: { max: 1, min: -1 } });
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
 
 	</head>
 
@@ -22,60 +66,14 @@
 				<tr>
 					<td>
      <!-- Insert Practice Graph -->
-                    <canvas id="linear" width="300" height="250">   <script>
-    var linearData = {
-	labels : ["Linear1","Linear2","Linear3","Linear4","Linear5","Linear6"],
-	datasets : [
-		{
-			fillColor : "rgb(43,182,233)",
-			strokeColor : "#000000",
-			pointColor : "#fff",
-			pointStrokeColor : "#000000",
-			data : [100,200,300,400,500,600]
-		}
-	]
-}
-    var linear = document.getElementById('linear').getContext('2d');
-    new Chart(linear).Line(linearData);
-</script></canvas>
+                    <div id="placeholder" style="width:400px; height:300px"></div>
 					</td>
 					<td>
                         <!-- Insert Practice Graph -->
-                      <canvas id="quad" width="300" height="250"><script>
-    var quadData = {
-	labels : ["Quadratic1","Quadratic2","Quadratic3","Quadratic4"],
-	datasets : [
-		{
-			fillColor : "rgb(43,182,233)",
-			strokeColor : "#000000",
-			pointColor : "#fff",
-			pointStrokeColor : "#000000",
-			data : [100,400,900,1600]
-		}
-	]
-}
-    var buyers = document.getElementById('quad').getContext('2d');
-    new Chart(buyers).Line(quadData);
-</script></canvas>
+                       <div id="middle" style="width:400px; height:300px"></div>
                     </td>
 					<td>
-                      <canvas id="sin" width="300" height="250"><script>
-    var sinData = {
-	labels : ["Sin1","Sin2","Sin3","Sin4","Sin5","Sin6","Sin7", "Sin8","Sin9"],
-	datasets : [
-		{
-			fillColor : "rgb(43,182,233)",
-			strokeColor : "#000000",
-			pointColor : "#fff",
-			pointStrokeColor : "#000000",
-			data : [100,0,-100,0,100,0,-100,0,100]
-		}
-	]
-}
-    var buyers = document.getElementById('sin').getContext('2d');
-    new Chart(buyers).Line(sinData);
-</script></canvas>
-                    
+                     <div id="end" style="width:400px; height:300px"></div>
                     
                     </td>
 				</tr>
