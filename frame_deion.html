@@ -3,54 +3,93 @@
 	<head>
         <meta charset="utf-8" />
         <title>Predator-Prey Simulator</title>
-		<link rel="stylesheet" type="text/css" href="frame_deion.css">
+		
         
-        <!-- Required to import Chart.js libraries -->
-          <script language="javascript" type="text/javascript" src="flot/jquery.js"></script>
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
+    <script type="text/javascript">
+   google.charts.load('current', {'packages':['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawChart);
 
-        <script language="javascript" type="text/javascript" src="flot/jquery.flot.js"></script>
-        
-        <!-- First graph information -->
-         <script type="text/javascript">
+    function drawChart() {
 
-	$(function() {
+      var button = document.getElementById('change-chart');
+      var chartDiv = document.getElementById('chart_div');
 
-		$.plot($("#placeholder"), [ [[0, 0], [1, 1], [2,2], [3,3], [4,4], [5,5]] ], { yaxis: { max: 5 }  });
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'Time');
+      data.addColumn('number', 'Prey - Population');
 
-		// Add the Flot version string to the footer
+      data.addRows([
+        [0, 987],
+        [1, 900],
+        [2, 877],
+        [3, 890],
+        [4, 789],
+        [5, 800],
+        [6, 650],
+        [7, 700],
+        [8, 743],
+        [9, 731],
+        [10, 693],
+        [11, 623],
+        [12, 540],
+        [13, 498],
+        [14, 377],
+        [15, 458],
+        [16, 600]
+      ]);
 
-		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-	});
+      var linearOptions = {
+        title: 'Predator Prey Test',
+        legend: 'none',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+          ticks: [-1000, -500, 0, 500, 1000]
+        }
+      };
 
-	</script>
-        
-        <!-- Second Graph information | Attempt -->
-         <script type="text/javascript">
+      var mirrorLogOptions = {
+        title: 'Population',
+        legend: 'Time',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+          scaleType: 'mirrorLog',
+          ticks: [50, 250, 1000]
+        }
+      };
 
-	$(function() {
+      function drawLinearChart() {
+        var linearChart = new google.visualization.LineChart(chartDiv);
+        linearChart.draw(data, linearOptions);
+        button.innerText = 'Change to Mirror Log Scale';
+        button.onclick = drawMirrorLogChart;
+      }
 
-		$.plot($("#middle"), [ [[0, 0],[1,1], [2, 4],[3,9],[4,16],[5,25]] ], { yaxis: { max: 25} });
+      function drawMirrorLogChart() {
+        var mirrorLogChart = new google.visualization.LineChart(chartDiv);
+        mirrorLogChart.draw(data, mirrorLogOptions);
+        button.innerText = 'Change to Linear Scale';
+        button.onclick = drawLinearChart;
+      }
 
-		// Add the Flot version string to the footer
-
-		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-	});
-
-	</script>
-        
-         <!-- Third Graph information | Attempt -->
-         <script type="text/javascript">
-
-	$(function() {
-
-		$.plot($("#end"), [ [[0, 0], [1, 1], [2,0],[3,-1],[4,0],[5,1],[6,0]] ], { yaxis: { max: 1, min: -1 } });
-
-		// Add the Flot version string to the footer
-
-		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-	});
-
-	</script>
+      drawMirrorLogChart();
+    }
+    </script>
 
 	</head>
 
@@ -62,21 +101,23 @@
 		</div>
 
 		<div class="graph">
+            <button id="change-chart"></button>
 			<table border="1" width="100%">
 				<tr>
 					<td>
      <!-- Insert Practice Graph -->
-                    <div id="placeholder" style="width:400px; height:300px"></div>
+                    <div id="chart_div"></div>
 					</td>
+                    <!--
 					<td>
-                        <!-- Insert Practice Graph -->
-                       <div id="middle" style="width:400px; height:300px"></div>
+                        
+                       <div id="chart_div"></div>
                     </td>
 					<td>
-                     <div id="end" style="width:400px; height:300px"></div>
-                    
+                     <div id="chart_div"></div>
                     </td>
 				</tr>
+       -->
 				<tr>
 					<td>Predator-Prey</td>
 					<td>Prey-Time</td>
