@@ -19,7 +19,12 @@
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'Time');
       data.addColumn('number', 'Prey - Population');
+        
+        for(i = 0 ; i < 15; i++){
+            data.addRows([[i, 900 - (i*10)]]);
+        }
 
+        /*
       data.addRows([
         [0, 987],
         [1, 900],
@@ -39,7 +44,7 @@
         [15, 458],
         [16, 600]
       ]);
-
+*/
       var linearOptions = {
         title: 'Predator Prey Test',
         legend: 'none',
