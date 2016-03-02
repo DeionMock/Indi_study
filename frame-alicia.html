@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+        <meta charset="utf-8" />
+        <title>Predator-Prey Simulator</title>
+		
+        
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
+    <script type="text/javascript">
+   google.charts.load('current', {'packages':['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var button = document.getElementById('change-chart');
+      var chartDiv = document.getElementById('chart_div');
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'Time');
+      data.addColumn('number', 'Prey - Population');
+
+      data.addRows([
+        [0, 987],
+        [1, 900],
+        [2, 877],
+        [3, 890],
+        [4, 789],
+        [5, 800],
+        [6, 650],
+        [7, 700],
+        [8, 743],
+        [9, 731],
+        [10, 693],
+        [11, 623],
+        [12, 540],
+        [13, 498],
+        [14, 377],
+        [15, 458],
+        [16, 600]
+      ]);
+
+      var linearOptions = {
+        title: 'Predator Prey Test',
+        legend: 'none',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+          ticks: [-1000, -500, 0, 500, 1000]
+        }
+      };
+
+      var mirrorLogOptions = {
+        title: 'Population',
+        legend: 'Time',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+          scaleType: 'mirrorLog',
+          ticks: [50, 250, 1000]
+        }
+      };
+
+      function drawLinearChart() {
+        var linearChart = new google.visualization.LineChart(chartDiv);
+        linearChart.draw(data, linearOptions);
+        button.innerText = 'Change to Mirror Log Scale';
+        button.onclick = drawMirrorLogChart;
+      }
+
+      function drawMirrorLogChart() {
+        var mirrorLogChart = new google.visualization.LineChart(chartDiv);
+        mirrorLogChart.draw(data, mirrorLogOptions);
+        button.innerText = 'Change to Linear Scale';
+        button.onclick = drawLinearChart;
+      }
+
+      drawMirrorLogChart();
+    }
+    </script>
+
+	</head>
+
+	<body>
+		
+		<div class="header">
+			<h3>Predator-Prey Model</h3>
+
+		</div>
+
+		<div class="graph">
+            <button id="change-chart"></button>
+			<table border="1" width="100%">
+				<tr>
+					<td>
+     <!-- Insert Practice Graph -->
+                    <div id="chart_div"></div>
+					</td>
+                    <!--
+					<td>
+                        
+                       <div id="chart_div"></div>
+                    </td>
+					<td>
+                     <div id="chart_div"></div>
+                    </td>
+				</tr>
+       -->
+				<tr>
+					<td>Predator-Prey</td>
+					<td>Prey-Time</td>
+					<td>Predator-Time</td>
+				</tr>
+			</table>
+		</div>
+		
+		</br>
+		</br>
+
+		<div class="parameters">
+
+			<table width="100%" border="1">
+				<tr>
+					<td>
+						<div>
+							<!--First parameter text box-->
+							<h2>Parameters</h2>
+							<form>
+								Predator:<br>
+								<input type="" name="parameter1">
+								<br>
+							<!--Second parameter text box-->
+								Prey:<br>
+								<input type="" name="parameter2">
+								<br>
+							</form>
+						</div>
+					</td>
+					<td>
+						<div>
+							<h2>Equation: </h2>
+							<p>
+							{dx}{dt} & = ax - bxy 
+							</p>
+							<p>
+							{dy}{dt} & = dxy  - jy
+							</p>
+						</div>
+					</td>
+					<td>Definitions</td>
+				</tr>
+			</table>
+
+			<div style="text-align: center;">
+				<button type="button" id = "myBtn">Generate Graphs</button>
+				<button>
+			<script>
+			document.getElementById("myBtn").addEventListener("click", function(){
+				var btn = prompt("This is one functional button, if I do say so myself!");
+			});
+			</script>
+			</div>
+
+		</div>
+
+
+
+	</body>
+
+
+</html>
