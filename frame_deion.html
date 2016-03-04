@@ -6,7 +6,8 @@
 		
         
          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      
+        
+      <!-- First Graph data information -->
     <script type="text/javascript">
    google.charts.load('current', {'packages':['corechart', 'line']});
     google.charts.setOnLoadCallback(drawChart);
@@ -16,53 +17,31 @@
       var button = document.getElementById('change-chart');
       var chartDiv = document.getElementById('chart_div');
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'Time');
-      data.addColumn('number', 'Prey - Population');
+      var data1 = new google.visualization.DataTable();
+      data1.addColumn('number', 'Time');
+      data1.addColumn('number', 'Prey - Time');
         
-        for(i = 0 ; i < 15; i++){
-            data.addRows([[i, 900 - (i*10)]]);
-        }
+   
 
-        /*
-      data.addRows([
-        [0, 987],
-        [1, 900],
-        [2, 877],
-        [3, 890],
-        [4, 789],
-        [5, 800],
-        [6, 650],
-        [7, 700],
-        [8, 743],
-        [9, 731],
-        [10, 693],
-        [11, 623],
-        [12, 540],
-        [13, 498],
-        [14, 377],
-        [15, 458],
-        [16, 600]
+    for(i = 0; i < 15; i++){
+      data1.addRows([
+        [i, (i*25)]
       ]);
-*/
-      var linearOptions = {
-        title: 'Predator Prey Test',
-        legend: 'none',
-        pointSize: 5,
-        width: 900,
-        height: 500,
-        hAxis: {
-          gridlines: {
-            count: -1
-          }
-        },
-        vAxis: {
-          ticks: [-1000, -500, 0, 500, 1000]
-        }
-      };
+    }
+        
+        var data2 = new google.visualization.DataTable();
+      data2.addColumn('number', 'Time');
+      data2.addColumn('number', 'Predator - Time');
+        
+   
 
-      var mirrorLogOptions = {
-        title: 'Population',
+    for(i = 0; i < 15; i++){
+      data2.addRows([
+        [i, (i*i*25)]
+      ]);
+    }
+      var linearOptions = {
+        title: 'Prey vs. Time',
         legend: 'Time',
         pointSize: 5,
         width: 900,
@@ -73,29 +52,46 @@
           }
         },
         vAxis: {
-          scaleType: 'mirrorLog',
-          ticks: [50, 250, 1000]
+            scaleType: 'Prey',
+          ticks: [0, 100, 200, 300, 400]
+        }
+      };
+
+      var mirrorLogOptions = {
+        title: 'Predator vs. Time',
+        legend: 'Time',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+          scaleType: 'Predator',
+          ticks: [0, 1000, 2000, 3000, 4000, 5000]
         }
       };
 
       function drawLinearChart() {
         var linearChart = new google.visualization.LineChart(chartDiv);
-        linearChart.draw(data, linearOptions);
-        button.innerText = 'Change to Mirror Log Scale';
+        linearChart.draw(data1, linearOptions);
+        button.innerText = 'Change to Predator';
         button.onclick = drawMirrorLogChart;
       }
 
       function drawMirrorLogChart() {
         var mirrorLogChart = new google.visualization.LineChart(chartDiv);
-        mirrorLogChart.draw(data, mirrorLogOptions);
-        button.innerText = 'Change to Linear Scale';
+        mirrorLogChart.draw(data2, mirrorLogOptions);
+        button.innerText = 'Change to Prey';
         button.onclick = drawLinearChart;
       }
 
       drawMirrorLogChart();
     }
     </script>
-
+        
 	</head>
 
 	<body>
@@ -106,33 +102,33 @@
 		</div>
 
 		<div class="graph">
-            <button id="change-chart"></button>
+            
 			<table border="1" width="100%">
+                <tr>
+                <td><button id="change-chart"></button></td>
+                </tr>
 				<tr>
 					<td>
-     <!-- Insert Practice Graph -->
+       <!-- Insert Practice Graph1 -->
                     <div id="chart_div"></div>
-					</td>
-                    <!--
+					</td> <!--
+                   
 					<td>
-                        
-                       <div id="chart_div"></div>
-                    </td>
+                       <div id="chart2_div"></div>
+                    </td> 
 					<td>
-                     <div id="chart_div"></div>
-                    </td>
+                  
+                    </td> -->
 				</tr>
-       -->
+    
 				<tr>
-					<td>Predator-Prey</td>
+					<td>Predator-Prey</td><!--
 					<td>Prey-Time</td>
-					<td>Predator-Time</td>
+					<td>Predator-Time</td> -->
 				</tr>
 			</table>
 		</div>
-		
-		</br>
-		</br>
+
 
 		<div class="parameters">
 
