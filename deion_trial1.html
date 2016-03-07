@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+        <meta charset="utf-8" />
+        <title>Predator-Prey Simulator</title>
+		
+        
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+      <!-- First Graph data information -->
+    <script type="text/javascript">
+   google.charts.load('current', {'packages':['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var button = document.getElementById('change-chart');
+      var chartDiv = document.getElementById('chart_div');
+        
+        var x = 1; //Variable x is the inital prey population
+        var y = 1; // Variable y is the initial predator population
+        var time = 10; //set time variable
+        var k = 1; //Set carrying capacity
+        var r = 1; //ideal growth rate
+        var c = 1;//interaction rate1
+        var alpha = 1;//interaction rate2
+        
+      var data1 = new google.visualization.DataTable();
+      data1.addColumn('number', 'Time');
+      data1.addColumn('number', 'Prey - Time');
+        
+        var data2 = new google.visualization.DataTable();
+      data2.addColumn('number', 'Time');
+      data2.addColumn('number', 'Predator - Time');
+        
+     for(i = 0; i < time; i++){
+        var dX = r*x*(1-(x/k)) - (c*x*y); //Change in prey over time
+        x = x-dX;
+         if(x < 0){
+             x = 0;
+         }
+         
+       var dY = k*y + (alpha *x*y); // Change in predator over time
+        y = y - dY;
+         if(y < 0){
+             y = 0;
+         }
+        
+      data1.addRows([
+        [i, x]
+      ]);
+         
+         data2.addRows([
+        [i, y]
+     ]);
+    }
+ 
+      var linearOptions = {
+        title: 'Prey vs. Time',
+        legend: 'Time',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+            scaleType: 'Prey',
+          ticks: [0, 100, 200, 300, 400]
+        }
+      };
+
+      var mirrorLogOptions = {
+        title: 'Predator vs. Time',
+        legend: 'Time',
+        pointSize: 5,
+        width: 900,
+        height: 500,
+        hAxis: {
+          gridlines: {
+            count: -1
+          }
+        },
+        vAxis: {
+          scaleType: 'Predator',
+          ticks: [0, 1000, 2000, 3000, 4000, 5000]
+        }
+      };
+
+      function drawLinearChart() {
+        var linearChart = new google.visualization.LineChart(chartDiv);
+        linearChart.draw(data1, linearOptions);
+        button.innerText = 'Change to Predator';
+        button.onclick = drawMirrorLogChart;
+      }
+
+      function drawMirrorLogChart() {
+        var mirrorLogChart = new google.visualization.LineChart(chartDiv);
+        mirrorLogChart.draw(data2, mirrorLogOptions);
+        button.innerText = 'Change to Prey';
+        button.onclick = drawLinearChart;
+      }
+
+      drawMirrorLogChart();
+    }
+    </script>
+        
+	</head>
+
+	<body>
+		
+		<div class="header">
+			<h3>Predator-Prey Model</h3>
+
+		</div>
+
+		<div class="graph">
+            
+			<table border="1" width="100%">
+                <tr>
+                <td><button id="change-chart"></button></td>
+                </tr>
+				<tr>
+					<td>
+       <!-- Insert Practice Graph1 -->
+                    <div id="chart_div"></div>
+					</td> <!--
+                   
+					<td>
+                       <div id="chart2_div"></div>
+                    </td> 
+					<td>
+                  
+                    </td> -->
+				</tr>
+    
+				<tr>
+					<td>Predator-Prey</td><!--
+					<td>Prey-Time</td>
+					<td>Predator-Time</td> -->
+				</tr>
+			</table>
+		</div>
+
+
+		<div class="parameters">
+
+			<table width="100%" border="1">
+				<tr>
+					<td>
+						<div>
+							<!--First parameter text box-->
+							<h2>Parameters</h2>
+							<form>
+								Predator:<br>
+								<input type="" name="parameter1">
+								<br>
+							<!--Second parameter text box-->
+								Prey:<br>
+								<input type="" name="parameter2">
+								<br>
+							</form>
+						</div>
+					</td>
+					<td>
+						<div>
+							<h2>Equation Being Used: </h2>
+							<p> Let x be the population of prey & y be the population of predator.
+							{dx}/{dt} = xX(1-X/K) 
+							</p>
+							<p>
+							{dy}/{dt}  = kY
+							</p>
+						</div>
+					</td>
+					<td>Definitions</td>
+				</tr>
+			</table>
+
+			<div style="text-align: center;">
+				<button type="button" id = "myBtn">Generate Graphs</button>
+				<button>
+			<script>
+			document.getElementById("myBtn").addEventListener("click", function(){
+				var btn = prompt("This is one functional button, if I do say so myself!");
+			});
+			</script>
+			</div>
+
+		</div>
+
+
+
+	</body>
+
+
+</html>
