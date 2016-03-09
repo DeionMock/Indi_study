@@ -21,15 +21,14 @@
       var data1 = new google.visualization.DataTable();
       data1.addColumn('number', 'Time');
       data1.addColumn('number', 'Prey - Time');
-        
+       
+         function getCo(){
    var step = 0.001;
    var p = 1;
    var t = 0;
    var time = 1/step;
-    var co = 2;
-        function getCo(){
-     co = prompt("Enter coefficient");
-        }
+    var co = prompt("Enter coefficient");
+        
     
         function dP(p) {
         return (co*p)-(p*p);
@@ -47,6 +46,8 @@
         p = p+(dP(p)*step);
         t+= step;
     }
+             drawLinearChart;
+         }
         
         var data2 = new google.visualization.DataTable();
       data2.addColumn('number', 'Time');
