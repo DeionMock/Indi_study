@@ -17,13 +17,6 @@
       var button = document.getElementById('change-chart');
       var chartDiv = document.getElementById('chart_div');
         
-        var x = 1; //Variable x is the inital prey population
-        var y = 1; // Variable y is the initial predator population
-        var time = 10; //set time variable
-        var k = 1; //Set carrying capacity
-        var r = 1; //ideal growth rate
-        var c = 1;//interaction rate1
-        var alpha = 1;//interaction rate2
         
       var data1 = new google.visualization.DataTable();
       data1.addColumn('number', 'Time');
@@ -33,27 +26,46 @@
       data2.addColumn('number', 'Time');
       data2.addColumn('number', 'Predator - Time');
         
-     for(i = 0; i < time; i++){
-        var dX = r*x*(1-(x/k)) - (c*x*y); //Change in prey over time
-        x = x-dX;
-         if(x < 0){
-             x = 0;
-         }
+        var R = 120; //Initial population of Rabbits
+        var F = 14; // Initial population of Foxes
+        var dR = 1; //Change in Rabbit population
+        var dF = 1; //Change in Fox population
+        var time = 3; //set time variable
+        var a = 1; //growth rate of rabbits
+        var b = (1/14); //constant - refers to number of fox-rabbit interaction -> rabbit is eaten
+        var d = 1;//death-rate coefficient of foxes
+        var g = -1*(1/120);//constant - benefit to fox population when rabbit is eaten
+        
+        //Initial populations:
+        data1.addRows([[0, R]]);
+        data2.addRows([[0,F]]);
+        
+     for(i = 1; i < time; i++){
+        dR = (a*R) - (b*R*F); //Change in prey over time
+         dF = (d*F) + (g*R*F); // Change in predator over time
          
-       var dY = k*y + (alpha *x*y); // Change in predator over time
-        y = y - dY;
-         if(y < 0){
-             y = 0;
-         }
+        R = R-dR;
+         /*
+         if(R <= 0 ){
+             R = 1;
+         }*/
+         
+       
+       F = F - dF;
+         /*
+         if(F <= 0){
+             F = 1;
+         })*/
         
       data1.addRows([
-        [i, x]
+        [i + (time*j), R]
       ]);
          
          data2.addRows([
-        [i, y]
+        [i + (time*j), F]
      ]);
     }
+
  
       var linearOptions = {
         title: 'Prey vs. Time',
@@ -68,7 +80,7 @@
         },
         vAxis: {
             scaleType: 'Prey',
-          ticks: [0, 100, 200, 300, 400]
+          ticks: [ 0, 100, 200, 300, 400, 500]
         }
       };
 
@@ -85,7 +97,7 @@
         },
         vAxis: {
           scaleType: 'Predator',
-          ticks: [0, 1000, 2000, 3000, 4000, 5000]
+          ticks: [ 0, 100, 200, 300, 400, 500]
         }
       };
 
