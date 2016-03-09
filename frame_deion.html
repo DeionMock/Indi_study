@@ -16,17 +16,36 @@
 
       var button = document.getElementById('change-chart');
       var chartDiv = document.getElementById('chart_div');
+    var coButton = document.getElementById('change-coefficient');
 
       var data1 = new google.visualization.DataTable();
       data1.addColumn('number', 'Time');
       data1.addColumn('number', 'Prey - Time');
         
-   
-
-    for(i = 0; i < 15; i++){
+   var step = 0.001;
+   var p = 1;
+   var t = 0;
+   var time = 1/step;
+    var co = 2;
+        function getCo(){
+     co = prompt("Enter coefficient");
+        }
+    
+        function dP(p) {
+        return (co*p)-(p*p);
+        }
+        
+        data1.addRows([
+            [t,p]
+        ]);
+        t+=step;
+    for(i = 1; i < time; i++){
       data1.addRows([
-        [i, (i*25)]
+        [t, p+ (dP(p)*step)]
       ]);
+        
+        p = p+(dP(p)*step);
+        t+= step;
     }
         
         var data2 = new google.visualization.DataTable();
@@ -43,7 +62,7 @@
       var linearOptions = {
         title: 'Prey vs. Time',
         legend: 'Time',
-        pointSize: 5,
+        pointSize: 1,
         width: 900,
         height: 500,
         hAxis: {
@@ -53,7 +72,7 @@
         },
         vAxis: {
             scaleType: 'Prey',
-          ticks: [-500, -250, 0, 250, 500]
+          ticks: [0, 1, 2, 3]
         }
       };
 
@@ -77,15 +96,21 @@
       function drawLinearChart() {
         var linearChart = new google.visualization.LineChart(chartDiv);
         linearChart.draw(data1, linearOptions);
+        coButton.innerText = 'Change coefficient';
+        coButton.onclick = getCo;
         button.innerText = 'Change to Predator';
         button.onclick = drawMirrorLogChart;
+        coButton.onclick = getCo;
       }
 
       function drawMirrorLogChart() {
         var mirrorLogChart = new google.visualization.LineChart(chartDiv);
         mirrorLogChart.draw(data2, mirrorLogOptions);
+        coButton.innerText = 'Change coefficient';
+        coButton.onclick = getCo;
         button.innerText = 'Change to Prey';
         button.onclick = drawLinearChart;
+        
       }
 
       drawMirrorLogChart();
@@ -106,6 +131,7 @@
 			<table border="1" width="100%">
                 <tr>
                 <td><button id="change-chart"></button></td>
+                <td><button id = "change-coefficient"</td>
                 </tr>
 				<tr>
 					<td>
