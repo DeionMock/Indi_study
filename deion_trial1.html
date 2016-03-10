@@ -21,7 +21,7 @@
       var data1 = new google.visualization.DataTable();
       data1.addColumn('number', 'Time');
       data1.addColumn('number', 'Prey');
-    data1.addColumn('number', 'Predator');
+      data1.addColumn('number', 'Predator');
         
         var data2 = new google.visualization.DataTable();
       data2.addColumn('number', 'Time');
@@ -29,49 +29,48 @@
         
         var R = 120; //Initial population of Rabbits
         var F = 14; // Initial population of Foxes
-        var dR = 1; //Change in Rabbit population
-        var dF = 1; //Change in Fox population
-        var time = 7; //set time variable
-        var a = 1; //growth rate of rabbits
-        var b = (1/12); //constant - refers to number of fox-rabbit interaction -> rabbit is eaten
-        var d = 1;//death-rate coefficient of foxes
-        var g = (1/120);//constant - benefit to fox population when rabbit is eaten
+                
+        var t = 0;
+        var step = .001; // Change in time
+        var time = 1/step; //set time variable
         
-        //Initial populations:
-        data1.addRows([[0, R, F]]);
-        data2.addRows([[0,F]]);
+//        var a = 1; //growth rate of rabbits
+//        var b = (1/12); //constant - refers to number of fox-rabbit interaction -> rabbit is eaten
+//        var d = 1;//death-rate coefficient of foxes
+//        var g = (1/120);//constant - benefit to fox population when rabbit is eaten
+        
+        function dR(R,F){ //Change in prey over time
+            var result = R - (1/12)*R*F;
+            return result;
+        }
+        
+        function dF(R, F){ // Change in predator over time
+            var result = F + (1/120)*R*F
+            return result;
+        }
+        
+         //Plot Initial populations:
+        data1.addRows([[t, R, F]]);
+        data2.addRows([[0,1]]);
+        t+= step;
         
      for(i = 1; i < time; i++){
-        dR = (a*R) - (b*R*F); //Change in prey over time
-         dF = (d*F) + (g*R*F); // Change in predator over time
-         
-        R = R-dR;
-         /*
-         if(R <= 0 ){
-             R = 1;
-         }*/
-         
-       
-       F = F - dF;
-         /*
-         if(F <= 0){
-             F = 1;
-         }*/
-        
       data1.addRows([
-        [i, R, F]
+        [t, R+ (dR(R,F)*step), F+ (dF(R,F)*step)]
       ]);
-         
-         data2.addRows([
-        [i, F]
-     ]);
+      data2.addRows([
+             [t,t*t]
+         ]);
+         R = R + (dR(R,F)*step); //Set new pop of Rabbits
+         F = F + (dF(R,F)*step); //Set new pop of Foxes
+           t+=step;
     }
 
  
       var linearOptions = {
         title: 'Prey vs. Time',
         legend: 'Time',
-        pointSize: 5,
+        pointSize: 1,
         width: 900,
         height: 500,
         hAxis: {
@@ -88,7 +87,7 @@
       var mirrorLogOptions = {
         title: 'Predator vs. Time',
         legend: 'Time',
-        pointSize: 5,
+        pointSize: 1,
         width: 900,
         height: 500,
         hAxis: {
@@ -105,7 +104,6 @@
       function drawLinearChart() {
         var linearChart = new google.visualization.LineChart(chartDiv);
         linearChart.draw(data1, linearOptions);
-//        linearChart.draw(data2, linearOptions);
         button.innerText = 'Change to Predator';
         button.onclick = drawMirrorLogChart;
       }
@@ -181,9 +179,6 @@
 					<td>
 						<div>
 							<h2>Equation Being Used: </h2>
-							<p> Let x be the population of prey & y be the population of predator.
-							{dx}/{dt} = xX(1-X/K) 
-							</p>
 							<p>
 							{dy}/{dt}  = kY
 							</p>
@@ -195,7 +190,7 @@
 
 			<div style="text-align: center;">
 				<button type="button" id = "myBtn">Generate Graphs</button>
-				<button>
+				
 			<script>
 			document.getElementById("myBtn").addEventListener("click", function(){
 				var btn = prompt("This is one functional button, if I do say so myself!");
