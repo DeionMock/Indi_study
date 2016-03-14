@@ -27,9 +27,10 @@
       data2.addColumn('number', 'Time');
       data2.addColumn('number', 'Predator');
         
-        var R = 120; //Initial population of Rabbits
+       
+        var R =  120; //Initial population of Rabbits
         var F = 14; // Initial population of Foxes
-                
+        
         var t = 0;
         var step = .001; // Change in time
         var time = 1/step; //set time variable
@@ -50,13 +51,13 @@
         }
         
          //Plot Initial populations:
-        data1.addRows([[t, R, F]]);
+        data1.addRows([[t, 1000*R,1000*F]]);
         data2.addRows([[0,1]]);
         t+= step;
         
      for(i = 1; i < time; i++){
       data1.addRows([
-        [t, R+ (dR(R,F)*step), F+ (dF(R,F)*step)]
+        [t, 1000*(R+ (dR(R,F)*step)), 1000*(F+ (dF(R,F)*step))]
       ]);
       data2.addRows([
              [t,t*t]
@@ -123,37 +124,16 @@
 
 	<body>
 		
-		<div class="header">
-			<h3>Predator-Prey Model</h3>
-
-		</div>
-
 		<div class="graph">
             
 			<table border="1" width="100%">
-                <tr>
-                <td><button id="change-chart"></button></td>
-                </tr>
+                <tr><td> <button id="change-chart"></button></td></tr>
 				<tr>
 					<td>
        <!-- Insert Practice Graph1 -->
-                    <div id="chart_div"></div>
-					</td> <!--
-                   
-					<td>
-                       <div id="chart2_div"></div>
-                    </td> 
-					<td>
-                  
-                    </td> -->
+                        <div id="chart_div"></div></td>
+                    
 				</tr>
-    
-				<tr>
-					<td>Predator-Prey</td><!--
-					<td>Prey-Time</td>
-					<td>Predator-Time</td> -->
-				</tr>
-			</table>
 		</div>
 
 
@@ -161,43 +141,55 @@
 
 			<table width="100%" border="1">
 				<tr>
-					<td>
-						<div>
+                    <td>
+                    <div>
 							<!--First parameter text box-->
 							<h2>Parameters</h2>
 							<form>
 								Predator:<br>
-								<input type="" name="parameter1">
+								<select id = "parameter1">
+  <option value="120">120</option>
+  <option value="140">140</option>
+</select>
+Enter Initial Rabbit Population
+
 								<br>
 							<!--Second parameter text box-->
 								Prey:<br>
-								<input type="" name="parameter2">
+								<select id="parameter2">
+                            <option value = "14">14</option>
+                            <option value = "12">12</option>
+                                </select>
+                                Enter Initial Hawk Population
 								<br>
 							</form>
 						</div>
-					</td>
+                    </td>
 					<td>
 						<div>
 							<h2>Equation Being Used: </h2>
 							<p>
-							{dy}/{dt}  = kY
+							{dR}/{dt} = &alpha;R - &beta;RF 
 							</p>
+                            <p>
+                            {dF}/{dt} = &delta;F + &gamma;RF
+                            </p>
 						</div>
 					</td>
 					<td>Definitions</td>
 				</tr>
 			</table>
-
-			<div style="text-align: center;">
+            
+            <div style="text-align: center;">
 				<button type="button" id = "myBtn">Generate Graphs</button>
-				
 			<script>
 			document.getElementById("myBtn").addEventListener("click", function(){
-				var btn = prompt("This is one functional button, if I do say so myself!");
-			});
-			</script>
-			</div>
+            var first = document.getElementById("parameter1").value;
 
+				var btn = prompt("Did you enter " + first);
+			}
+                );
+			</script>
 		</div>
 
 
