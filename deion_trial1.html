@@ -42,9 +42,8 @@
          var R = Number(document.getElementById('parameter1').value); //Initial Rabbit Pop -- Global
         var F = Number(document.getElementById('parameter2').value); // Initial population of Foxes -- Global
      
-           var check = prompt("In function with " + R + " " + F);
         var t = 0;
-        var step = .001; // Change in time
+        var step = .0001; // Change in time
         var time = 1/step; //set time variable
          
         var a = Number(document.getElementById('growth-rate').value); //growth rate of rabbits
@@ -57,7 +56,6 @@
          //Plot Initial populations:
         data1.addRows([[t, R, F]]);
         t+= step;
-         prompt(data1);
         
      for(i = 1; i < time; i++){
       data1.addRows([
@@ -137,28 +135,61 @@
 							<form>
 								Rabbit Population:<br>
 								<select id = "parameter1">
-  <option value=120>120</option>
-  <option value=140>140</option>
+  <option value = "50">50</option>
+  <option value = "100">100</option>
+  <option value = "150">150</option>
+  <option value = "200">200</option>
+  <option value = "250">250</option>
+  <option value = "300">300</option>
+  <option value = "350">350</option>
+  <option value = "400">400</option>
+  <option value = "450">450</option>
+  <option value = "500">500</option>
 </select>
 
 								<br>
 							<!--Second parameter text box-->
 								Hawk Population:<br>
 								<select id="parameter2">
-                            <option value = "14">14</option>
-                            <option value = "12">12</option>
+                            <option value = "45">45</option>
+                            <option value = "40">40</option>
+                            <option value = "35">35</option>
+                            <option value = "30">30</option>
+                            <option value = "25">25</option>
+                            <option value = "20">20</option>
+                            <option value = "15">15</option>
+                            <option value = "10">10</option>
+                            <option value = "5">5</option>
+                            <option value = "1">1</option>
                                 </select>
 								</br>
                         Rabbit Growth Rate:<br>
                         <select id = "growth-rate">
                     <option value = "1">100%</option>
                     <option value = ".9">90%</option>
+                    <option value = ".8">80%</option>
+                    <option value = ".7">70%</option>
+                    <option value = ".6">60%</option>
+                    <option value = ".5">50%</option>
+                    <option value = ".4">40%</option>
+                    <option value = ".3">30%</option>
+                    <option value = ".2">20%</option>
+                    <option value = ".1">10%</option>
                         </select>
                         </br>
                         Hawk Death Rate:<br>
                         <select id ="death-rate">
                         <option value="1">100%</option>
                         <option value = ".9">90%</option>
+                        <option value = ".8">80%</option>
+                        <option value = ".7">70%</option>
+                        <option value = ".6">60%</option>
+                        <option value = ".5">50%</option>
+                        <option value = ".4">40%</option>
+                        <option value = ".3">30%</option>
+                        <option value = ".2">20%</option>
+                        <option value = ".1">10%</option>
+
                         </select>
                                 
 							</form>
@@ -174,10 +205,10 @@
 						<div>
 							<h2>Equation Being Used: </h2>
 							<p>
-							{dR}/{dt} = &alpha;R - &beta;RF 
+							dR&frasl;dT = &alpha;R - &beta;RF 
 							</p>
                             <p>
-                            {dF}/{dt} = &delta;F + &gamma;RF
+                            dF&frasl;dT = &delta;F + &gamma;RF
                             </p>
 						</div>
 					</td>
