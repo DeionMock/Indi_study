@@ -3,12 +3,17 @@
 
         
         function dR(a,R,F){ //Change in prey over time
-            var result = a*R - (1/12)*R*F;
+//            var result = a*R - (1/12)*R*F;
+            var b = (1/12);
+            var h = 50;
+            var result = h + R*(a - b*F)
             return result;
         }
       
         function dF(d,R, F){ // Change in predator over time
-            var result = d*F + (1/120)*R*F
+//            var result = d*F + (1/120)*R*F
+            var p = (1/120);
+            var result = -F*(d - p*R);
             return result;
         }
         
@@ -31,8 +36,8 @@
         var F = Number(document.getElementById('parameter2').value); // Initial population of Foxes -- Global
      
         var t = 0;
-        var step = .0001; // Change in time
-        var time = 1/step; //set time variable
+        var step = .01; // Change in time
+        var time = 20/step; //set time variable
          
         var a = Number(document.getElementById('growth-rate').value); //growth rate of rabbits
 //        var b = (1/12); //constant - refers to number of fox-rabbit interaction -> rabbit is eaten
